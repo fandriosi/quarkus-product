@@ -1,4 +1,4 @@
-package fabio.andriosi.quarkus.produt.dto;
+package fabio.andriosi.quarkus.product.dto;
 
 import java.util.UUID;
 

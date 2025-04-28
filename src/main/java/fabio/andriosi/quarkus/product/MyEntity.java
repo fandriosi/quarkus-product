@@ -1,4 +1,4 @@
-package fabio.andriosi.quarkus.produt;
+package fabio.andriosi.quarkus.product;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import jakarta.persistence.Entity;

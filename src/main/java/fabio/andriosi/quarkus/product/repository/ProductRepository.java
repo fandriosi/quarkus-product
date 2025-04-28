@@ -1,15 +1,16 @@
-package fabio.andriosi.quarkus.produt.repository;
+package fabio.andriosi.quarkus.product.repository;
 
 import java.util.Optional;
 import java.util.UUID;
 
-import fabio.andriosi.quarkus.produt.entity.Product;
+import fabio.andriosi.quarkus.product.entity.Product;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import io.quarkus.panache.common.Parameters;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class ProductRepository implements  PanacheRepository<Product>{
+    
     public Optional<Product> findById(UUID id) {
         return find("id", id).firstResultOptional();
     }

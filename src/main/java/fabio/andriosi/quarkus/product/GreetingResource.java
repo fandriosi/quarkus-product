@@ -1,4 +1,4 @@
-package fabio.andriosi.quarkus.produt;
+package fabio.andriosi.quarkus.product;
 
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
