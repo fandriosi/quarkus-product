@@ -6,5 +6,6 @@ CREATE TABLE product (
     description varchar(255) not null,
     categoria varchar(255),
     model varchar(255),
-    price decimal
+    price decimal,
+    estoque number;
 );

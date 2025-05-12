@@ -4,10 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import org.eclipse.microprofile.reactive.messaging.Incoming;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import fabio.andriosi.quarkus.product.dto.OrderDTO;
 import fabio.andriosi.quarkus.product.dto.ProductDTO;
 import fabio.andriosi.quarkus.product.entity.Product;
 import fabio.andriosi.quarkus.product.repository.ProductRepository;
+
+import fabio.andriosi.quarkus.product.dto.ProductOrderDTO;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
@@ -51,5 +57,22 @@ public class ProductService {
 
     public boolean delete(UUID id){
         return repository.deleteByUuid(id);
+    }
+
+    @Incoming("ordens-criadas")
+    public void consumirOrdem(String ordemJson) {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            OrderDTO ordem = mapper.readValue(ordemJson, OrderDTO.class);
+
+            for (ProductOrderDTO p: ordem.produtos) {
+                repository.reduzirEstoque(p.id, p.quantidade);
+            }
+
+            System.out.println("Estoque atualizado para ordem: " + ordem.id);
+
+        } catch (Exception e) {
+            e.printStackTrace(); // Em produção, logar corretamente
+        }
     }
 }

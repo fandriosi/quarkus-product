@@ -24,4 +24,5 @@ public class Product {
     private String categoria;
     private String model;
     private Double price;
+    private Integer estoque;
 }

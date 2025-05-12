@@ -18,4 +18,8 @@ public class ProductRepository implements  PanacheRepository<Product>{
     public boolean deleteByUuid(UUID id) {
         return delete("id = :id", Parameters.with("id", id)) > 0;
     }
+
+    public void reduzirEstoque(UUID id, int quantidade) {
+        update("id =:id, estoque= :quantidade");
+    }
 }
